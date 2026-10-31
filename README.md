@@ -31,16 +31,32 @@ All classes use the package `projectone`.
 
 ## Running the tests in VS Code
 
-Open the repository folder in VS Code, open the terminal (**Ctrl + `**), and run:
+Open the repository folder in VS Code, open the terminal (**Ctrl + `**), and follow the steps below.
+
+### First time only
+
+Download the JUnit runner. It is saved to your Temp folder, so this only needs to be repeated if Temp is cleared or you are on a different computer.
 
 ```
 $url = "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.11.4/junit-platform-console-standalone-1.11.4.jar"
 curl.exe -L -o "$env:TEMP\junit.jar" $url
+```
+
+### Every time
+
+Compile the classes and tests. Run this again whenever a `.java` file changes, or the tests will run against the old version.
+
+```
 javac -d "$env:TEMP\cs320out" -cp "$env:TEMP\junit.jar" ContactService\*.java TaskService\*.java AppointmentService\*.java
+```
+
+Run all tests:
+
+```
 java -jar "$env:TEMP\junit.jar" execute -cp "$env:TEMP\cs320out" --scan-classpath
 ```
 
-This downloads the JUnit runner, compiles all classes and tests into a temporary folder, and runs every test. All 36 tests should pass.
+All 36 tests should pass.
 
 ## Known limitations
 
